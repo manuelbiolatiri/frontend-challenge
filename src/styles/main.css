@@ -111,7 +111,6 @@ body {
   outline: 0;
 }
 
-/* not small devices  */
 @media (min-width: 576px) {
   .user-details {
     display: block;
@@ -121,7 +120,6 @@ body {
     margin: 0;
     color: rgb(63, 63, 65);
     font-size: 1rem;
-    /* font-weight: bold; */
   }
 
   .loggedin-user {
