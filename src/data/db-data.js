@@ -1,5 +1,5 @@
-import photo from '../assets/img/me.jpg'
-import photo1 from '../assets/img/myself.jpg'
+import photo from '../assets/img/me.JPG'
+import photo1 from '../assets/img/myself.png'
 import photo2 from '../assets/img/andI.jpg'
 import store from '../store'
 
