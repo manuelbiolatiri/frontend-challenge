@@ -1,6 +1,5 @@
 import React from 'react'
 import Message from './Message'
-import store from '../../store'
 import {} from '../../actions'
 
 const Chats = props => {

@@ -3,9 +3,6 @@ import store from '../store'
 import { addMessage } from '../actions'
 
 export default class MessageInput extends React.Component {
-  constructor(props) {
-    super(props)
-  }
 
   state = {
     inputValue: ''

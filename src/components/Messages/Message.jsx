@@ -6,7 +6,7 @@ const classes = isUser => {
 
 const Message = props => {
   return (
-    <p className={classes(props.message.isThisUser)}>{props.message.content}</p>
+  <p className={classes(props.message.isThisUser)}>{props.message.content} {props.message.sentOn.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: true})}</p>
   )
 }
 

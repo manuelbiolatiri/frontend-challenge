@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
 import SideBarContact from './SideBarContact'
 import { Link } from 'react-router-dom'
 import LoggedinUser from '../../components/Sidebar/LoggedInUser'
 import { getUserByID } from '../../data/db-data'
 
 export default class Sidebar extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   getUsersByIds = users => {
     let _users = []
