@@ -14,11 +14,6 @@ export default function user(state = userInitialState, action) {
           content: action.payload.text,
           sentOn: new Date()
         })
-        console.log({
-            isThisUser: action.payload.senderIsOurUser,
-            content: action.payload.text,
-            sentOn: new Date()
-        })
       return { ...state }
 
     default:

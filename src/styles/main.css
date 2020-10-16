@@ -53,8 +53,7 @@ body {
 }
 
 .main {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0 20px;
   flex: 1 1 0;
   overflow-y: auto;
 }
@@ -176,27 +175,26 @@ body {
   background-color: #d1d1d1;
 }
 
-.empty {
+.home {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
 }
-.empty-name {
+.home-name {
   color: rgb(63, 63, 65);
 }
 
-.empty-img {
+.home-img {
   width: 200px;
   height: 200px;
   border-radius: 50%;
   margin: 0.5rem 0;
 }
-.empty-btn, .send-btn {
+.home-btn, .send-btn {
   padding: 1rem;
   margin: 0px 10px;
-  font-weight: bold;
   font-size: 1.2rem;
   border-radius: 5px;
   background-color: #7b9cc2;
@@ -204,11 +202,14 @@ body {
   color: white;
   cursor: pointer;
 }
-.empty-btn:hover {
+
+.send-btn:hover {
   background:#24558c;
-  color: rgb(63, 63, 65);
   cursor: pointer;
   transition: 300ms;
+}
+.span {
+  margin-right: 8px;
 }
 
 .messages {
@@ -221,6 +222,34 @@ body {
   width: 100%;
   margin: 0 auto;
   overflow-y: scroll;
+}
+
+@media (max-width: 667px) {
+  .center-app {
+    width: 100%;
+    margin: 0;
+  }
+  .main {
+    padding: 0px;
+  }
+  .messages {
+    height: 80vh;
+  }
+  .message-input {
+    width: 100%;
+  }
+  .form-container {
+    display: flex;
+  }
+  .send-btn {
+    border-radius: 50%;
+  }
+  .msg-input {
+    margin-left: 5px;
+  }
+  .span {
+    display: none;
+  }
 }
 
 .message {
@@ -243,7 +272,7 @@ body {
   padding: 1rem;
   max-width: 45%;
   border-radius: 8px;
-  border:2px solid #3f3d3d
+  border: 1px solid rgb(63, 63, 65)
 }
 
 .header {

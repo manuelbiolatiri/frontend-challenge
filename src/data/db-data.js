@@ -1,4 +1,4 @@
-import photo from '../assets/img/me.JPG'
+import photo from '../assets/img/meee.JPG'
 import photo1 from '../assets/img/myself.png'
 import photo2 from '../assets/img/andI.jpg'
 import store from '../store'
@@ -53,7 +53,7 @@ export const data = [
       }
     ],
     name: 'Emmanuel',
-    pic: photo2,
+    pic: photo1,
   },
   {
     id: 2,
@@ -64,7 +64,7 @@ export const data = [
       }
     ],
     name: 'Biolatiri',
-    pic: photo
+    pic: photo2
   },
   {
     id: 3,
@@ -75,7 +75,7 @@ export const data = [
       }
     ],
     name: 'Laide',
-    pic: photo1
+    pic: photo
   },
   {
     id: 4,
