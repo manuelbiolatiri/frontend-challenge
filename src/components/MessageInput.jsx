@@ -1,6 +1,8 @@
 import React from 'react'
 import store from '../store'
 import { addMessage } from '../actions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 export default class MessageInput extends React.Component {
 
@@ -49,7 +51,7 @@ export default class MessageInput extends React.Component {
             onChange={this.handleChange}
             placeholder="Write a message"
           />
-          <button className="send-btn" onClick={this.onSubmit.bind(this)}>Send</button>
+          <button className="send-btn" onClick={this.onSubmit.bind(this)}><span className="span">Send</span><FontAwesomeIcon icon={faPaperPlane} /></button>
         </div>
       </form>
     )
