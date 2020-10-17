@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const LoggedinUser = props => {
   const { pic, name} = store.getState().users.user
   return (
-    <Link to="/" className="user link loggedin-user">
+    <Link to="/" className="user link loggedin-user" style={{boxShadow:'none'}}>
       <div className="relative">
         <img src={pic} alt={name} className="user-pic" />
       </div>

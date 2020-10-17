@@ -43,6 +43,8 @@ export const user = {
   ]
 }
 
+export const pushUserMessage = []
+
 export const data = [
   {
     id: 1,

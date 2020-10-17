@@ -1,13 +1,15 @@
 import React from 'react'
 import store from '../store'
 import { addMessage } from '../actions'
+import { pushUserMessage } from '../data/db-data'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 export default class MessageInput extends React.Component {
 
   state = {
-    inputValue: ''
+    inputValue: '',
+    latestMsg: ''
   }
 
   componentDidUpdate() {
@@ -29,18 +31,37 @@ export default class MessageInput extends React.Component {
   onSubmit = e => {
     e.preventDefault()
     let text = this.state.inputValue
-    const { ourID, hisID } = this.props
+    const { ourID, hisID, userr } = this.props
     if (this.props.notUser) {
       store.dispatch(addMessage({ text, hisID, ourID, senderIsOurUser: false }))
     } else {
       if (text === '') return
       store.dispatch(addMessage({ text, hisID, ourID, senderIsOurUser: true }))
+     
+      console.log(pushUserMessage.unshift(userr.name))
+      console.log(pushUserMessage)
+     
+const resultArr = pushUserMessage.reduce((acc,item)=>{
+      if(!acc.includes(item)){
+        acc.push(item);
+      }
+    return acc;
+},[])
+this.setState({latestMsg: resultArr})
+// console.log(resultArr)
     }
     this.setState({ inputValue: '' })
   }
 
   render() {
+const {latestMsg} = this.state;
     return (
+      <div>
+        {latestMsg ? 
+latestMsg.map(c => (
+  <p>{c}</p>
+)) : ''}
+        
       <form className="message-input">
         <div className="form-container">
           <input
@@ -54,6 +75,7 @@ export default class MessageInput extends React.Component {
           <button className="send-btn" onClick={this.onSubmit.bind(this)}><span className="span">Send</span><FontAwesomeIcon icon={faPaperPlane} /></button>
         </div>
       </form>
+      </div>
     )
   }
 }

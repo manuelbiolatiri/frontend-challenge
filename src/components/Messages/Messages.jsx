@@ -23,7 +23,7 @@ const Messages = props => {
         </div>
       </header>
       <Chats user={usr} messages={msgs} />
-      <MessageInput ourID={myID} hisID={id} />
+      <MessageInput ourID={myID} hisID={id} userr={usr}/>
     </div>
   )
 }
