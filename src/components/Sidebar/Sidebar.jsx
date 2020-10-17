@@ -6,7 +6,7 @@ import { getUserByID } from '../../data/db-data'
 import _ from 'lodash'
 
 export default class Sidebar extends Component {
-  // const [query, setQuery] = useState(false)
+
   state ={
     query: false
   }
