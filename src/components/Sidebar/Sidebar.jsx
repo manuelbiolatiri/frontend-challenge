@@ -24,7 +24,7 @@ export default class Sidebar extends Component {
     const users = this.getUsersByIds(user.contacts)
     console.log(users)
     return (
-      <div style={{overflowY:'auto'}}>
+      <div style={{overflowY:'auto', overflow: 'hidden'}}>
         <header className="header">
         <LoggedinUser />
         <div className="search">
