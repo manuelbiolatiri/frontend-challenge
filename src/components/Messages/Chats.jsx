@@ -8,7 +8,7 @@ const Chats = props => {
     if (messages.messages.length === 0) {
       return (
         <div>
-          <h3>No previous messages with {user.name}, say hi !</h3>
+          <h4 style={{color:'gray'}}>No previous messages with {user.name}, say hi !</h4>
         </div>
       )
     } else {
