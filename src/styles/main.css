@@ -274,7 +274,7 @@ body {
     padding: 0px;
   }
   .messages {
-    height: 80vh;
+    height: 75vh;
   }
   .message-input {
     width: 100%;
@@ -295,7 +295,8 @@ body {
     width: 30px;
   }
   .s-input {
-    width: 30%;
+    /* width: 30%; */
+    display: none;
   }
 }
 
