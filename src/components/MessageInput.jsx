@@ -1,0 +1,59 @@
+import React from 'react'
+import store from '../store'
+import { addMessage } from '../actions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+
+export default class MessageInput extends React.Component {
+
+  state = {
+    inputValue: ''
+  }
+
+  componentDidUpdate() {
+    this.goToBottom()
+  }
+
+  handleChange = e => {
+    this.setState({ inputValue: e.target.value })
+  }
+
+  goToBottom = () => {
+    let elements = document.getElementsByClassName('msg')
+    if (elements.length !== 0) {
+      let element = elements[elements.length - 1]
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  onSubmit = e => {
+    e.preventDefault()
+    let text = this.state.inputValue
+    const { ourID, hisID } = this.props
+    if (this.props.notUser) {
+      store.dispatch(addMessage({ text, hisID, ourID, senderIsOurUser: false }))
+    } else {
+      if (text === '') return
+      store.dispatch(addMessage({ text, hisID, ourID, senderIsOurUser: true }))
+    }
+    this.setState({ inputValue: '' })
+  }
+
+  render() {
+    return (
+      <form className="message-input">
+        <div className="form-container">
+          <input
+            autoFocus
+            type="text"
+            className="msg-input"
+            value={this.state.inputValue}
+            onChange={this.handleChange}
+            placeholder="Write a message"
+          />
+          <button className="send-btn" onClick={this.onSubmit.bind(this)}><span className="span">Send</span><FontAwesomeIcon icon={faPaperPlane} /></button>
+        </div>
+      </form>
+    )
+  }
+}
