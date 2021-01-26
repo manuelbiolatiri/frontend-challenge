@@ -1,24 +1,27 @@
-import React from 'react'
-import store from '../store'
-import { addMessage } from '../actions'
+import React, {useState, useEffect} from 'react'
+// import store from '../store'
+import { getRoomMessages } from '../actions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch, useSelector } from 'react-redux';
+import io from 'socket.io-client'
 
-export default class MessageInput extends React.Component {
+// const socket = io.connect('http://localhost:3003')
 
-  state = {
-    inputValue: ''
+ const MessageInput = (props) => {
+  const dispatch = useDispatch();
+ const [inputValue, setInputValue] = useState('')
+
+ useEffect(() => {
+  goToBottom()
+ }, [])
+
+
+  const handleChange = e => {
+    setInputValue( e.target.value )
   }
 
-  componentDidUpdate() {
-    this.goToBottom()
-  }
-
-  handleChange = e => {
-    this.setState({ inputValue: e.target.value })
-  }
-
-  goToBottom = () => {
+  const goToBottom = () => {
     let elements = document.getElementsByClassName('msg')
     if (elements.length !== 0) {
       let element = elements[elements.length - 1]
@@ -26,20 +29,26 @@ export default class MessageInput extends React.Component {
     }
   }
 
-  onSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault()
-    let text = this.state.inputValue
-    const { ourID, hisID } = this.props
-    if (this.props.notUser) {
-      store.dispatch(addMessage({ text, hisID, ourID, senderIsOurUser: false }))
+
+    const { ourID, hisID, chatRoomId } = props
+    // socket.on('subscribe', ({ name, message }) => {
+    //   setChat([...chat, { name, message }])
+    // })
+    if (!chatRoomId) {
+      console.log("no chat room found")
+      // store.dispatch(addMessage({ text, hisID, ourID, senderIsOurUser: false }))
     } else {
-      if (text === '') return
-      store.dispatch(addMessage({ text, hisID, ourID, senderIsOurUser: true }))
-    }
-    this.setState({ inputValue: '' })
+      // if (inputValue === '') return
+      // socket.on('subscribe', ({ hisID, ourID, chatRoomId, inputValue}) => {
+      // dispatch(getRoomMessages({hisID, ourID, chatRoomId, inputValue}))
+      // store.dispatch(addMessage({ text, hisID, ourID, senderIsOurUser: true }))
+    // })}
+    // setInputValue('')
+  }
   }
 
-  render() {
     return (
       <form className="message-input">
         <div className="form-container">
@@ -47,13 +56,14 @@ export default class MessageInput extends React.Component {
             autoFocus
             type="text"
             className="msg-input"
-            value={this.state.inputValue}
-            onChange={this.handleChange}
+            value={inputValue}
+            onChange={handleChange}
             placeholder="Write a message"
           />
-          <button className="send-btn" onClick={this.onSubmit.bind(this)}><span className="span">Send</span><FontAwesomeIcon icon={faPaperPlane} /></button>
+          <button className="send-btn" onClick={onSubmit}><span className="span">Send</span><FontAwesomeIcon icon={faPaperPlane} /></button>
         </div>
       </form>
     )
   }
-}
+
+  export default MessageInput

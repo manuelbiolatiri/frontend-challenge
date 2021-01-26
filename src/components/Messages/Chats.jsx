@@ -5,14 +5,15 @@ import {} from '../../actions'
 const Chats = props => {
   const renderChat = () => {
     const { messages, user } = props
-    if (messages.messages.length === 0) {
+    console.log(messages)
+    if (messages.length === 0) {
       return (
         <div>
-          <h4 style={{color:'gray'}}>No previous messages with {user.name}, say hi !</h4>
+          <h4 style={{color:'gray'}}>No previous messages with {user.firstName}, say hi !</h4>
         </div>
       )
     } else {
-      return messages.messages.map((msg, i) => (
+      return messages.map((msg, i) => (
         <Message key={'msg' + i} message={msg} />
       ))
     }
