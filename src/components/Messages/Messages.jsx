@@ -39,9 +39,8 @@ const Messages = props => {
   useEffect(() => {
     const socket = io(process.env.REACT_APP_API_URL);
     console.log('useeffect! to server');
-    console.log(socket)
+    console.log(socket.id)
     socket.on("messages", (data) => setLastMessage(data));
-    socket.on("messages", (data) => console.log(data));
 
       
   }, []);
