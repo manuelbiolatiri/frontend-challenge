@@ -8,11 +8,6 @@ import photo from '../../assets/img/meee.JPG'
 import { useDispatch, useSelector } from 'react-redux';
 import { getMessages } from '../../actions'
 import io from "socket.io-client";
-
-import {
-  useGetConversationMessages,
-  useSendConversationMessage,
-} from "../../Services/ChatService";
 import axios from 'axios'
 
 
@@ -29,7 +24,6 @@ const Messages = props => {
 
 
   let chatBottom = useRef(null);
-  let socket;
 
   useEffect(() => {
     reloadMessages();
@@ -44,13 +38,17 @@ const Messages = props => {
 
       
   }, []);
+ const scrollToBottom = () => {
+    chatBottom.current.scrollIntoView({ behavior: "smooth" });
+  };
 
+  useEffect(scrollToBottom, [messages]);
 
 const {id} = props.match.params
 // console.log(id)
   const reloadMessages = () => {
     if ('conversationId' == 'conversationId') {
-     axios.get(`http://localhost:5000/api/messages/conversations/query?userId=${id}`,
+     axios.get(`http://localhost:3007/api/messages/conversations/query?userId=${id}`,
         {headers: {
           Authorization: resultparse
         }})
@@ -60,11 +58,7 @@ const {id} = props.match.params
     }
   };
 
-  const scrollToBottom = () => {
-    chatBottom.current.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(scrollToBottom, [messages]);
+ 
 
   const requestOption = {
     method: 'POST',
@@ -74,56 +68,50 @@ const {id} = props.match.params
   const handleSubmit = (e) => {
     
     e.preventDefault(); 
-    fetch(`http://localhost:5000/api/messages`,requestOption ).then((res) => {
+    fetch(`http://localhost:3007/api/messages`,requestOption ).then((res) => {
       // reloadMessages();
           // console.log("last mesg",lastMessage)
         setNewMessage("");
       });
     
   };
-  
-  const classes = isUser => {
-    return isUser ? 'msg message-user' : 'msg message'
-  }
+
   return (
-    <div>
-      <header className="header">
+    <div style={{width: '100%'}}>
+      <header className="header" >
         <div className="d-flex">
           <img src={photo} alt="" className="header-image" />
           <h1 className="header-name" style={{color:'black'}}>username</h1><br/>
-          {/* <h1 className="header-name" style={{color:'black'}}>{userIds ? userIds : 'usersss'}</h1> */}
         </div>
       </header>
-      <div>
-      {messages && 
-                messages.map(dd => <div key={dd._id}>{dd.body}</div>)
-                }
-        <div ref={chatBottom} />
-      {/* if (messages.length === 0) {
-      return (
-        <div>
-          <h4 style={{color:'gray'}}>No previous messages with {user.firstName}, say hi !</h4>
+      <div style={{display: "flex"}}>
+      <div style={{width: '30%',backgroundColor: 'blue'}}>
+
+      </div>
+      <div style={{width: '70%',  height:'650px', backgroundColor: 'green'}}>
+          <div style={{ maxHeight:'90%', overflowY: 'scroll'}}>
+          {messages && 
+                    messages.map(dd => <div style={{border:'1px solid green ', marginLeft:'20rem', borderRadius: '7px', backgroundColor:'yellow', marginTop: '7px'}} key={dd._id}>{dd.body}</div>)
+                    }
+            <div ref={chatBottom} />
+          </div>
+          <div style={{height:'10%'}}>
+          <form style={{ margin: '5px auto'}}>
+            <div className="form-container">
+              <input
+                autoFocus
+                type="text"
+                className="msg-input"
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                placeholder="Write a message"
+              />
+              <button className="send-btn" onClick={handleSubmit}><span className="span">Send</span></button>
+            </div>
+            </form>
+            </div>
         </div>
-      )
-    } else {
-      return messages.map((msg, i) => (
-        <Message key={'msg' + i} message={msg} />
-      ))
-    } */}
-  </div>
-      <form className="message-input">
-        <div className="form-container">
-          <input
-            autoFocus
-            type="text"
-            className="msg-input"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Write a message"
-          />
-          <button className="send-btn" onClick={handleSubmit}><span className="span">Send</span></button>
         </div>
-      </form>
     </div>
   )
 }

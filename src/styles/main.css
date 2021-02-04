@@ -48,7 +48,7 @@ body {
   width: 70%;
   margin: 40px 0;
   padding: 10px 6px;
-  box-shadow:0 0 7px rgb(110, 110, 114);
+  box-shadow: 0 0 7px rgb(110, 110, 114);
 }
 
 .main {
@@ -64,7 +64,6 @@ body {
   -moz-box-shadow: inset 0 -10px 10px -10px #c7c3c3;
   -webkit-box-shadow: inset 0 -10px 10px -10px #c7c3c3;
   box-shadow: inset 0 -10px 10px -10px #c7c3c3;
-  
 }
 .user:hover {
   color: #fff;
@@ -140,7 +139,7 @@ body {
   }
   .form-container {
     display: flex;
-    margin-top: -30px;
+    /* margin-top: -30px; */
   }
   .msg-input {
     width: 80%;
@@ -201,19 +200,20 @@ body {
   border-radius: 50%;
   margin: 0.5rem 0;
 }
-.home-btn, .send-btn {
+.home-btn,
+.send-btn {
   padding: 1rem;
   margin: 0px 10px;
   font-size: 1.2rem;
   border-radius: 5px;
   background-color: #7b9cc2;
-  border:none;
+  border: none;
   color: white;
   cursor: pointer;
 }
 
 .send-btn:hover {
-  background:#24558c;
+  background: #24558c;
   cursor: pointer;
   transition: 300ms;
 }
@@ -254,7 +254,7 @@ body {
   padding: 1rem;
   max-width: 45%;
   border-radius: 8px;
-  border: 1px solid rgb(63, 63, 65)
+  border: 1px solid rgb(63, 63, 65);
 }
 
 .header {

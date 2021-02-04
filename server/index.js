@@ -21,7 +21,7 @@ const messages = require('./routes/api/messages');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // Port that the webserver listens to
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3007;
 
 const io = socketio(http);
 //create an event listener
